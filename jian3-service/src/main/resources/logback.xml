@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/cloud-engine-config.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/jian3-watcher-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %date [%-5level]-- %c{40} %line --%mdc{client} %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %date [%-5level]-- %c{40} %line --%mdc{client} %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+
+    <root name="debug"  additivity="true">
+        <appender-ref ref="file" />
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.wzp.jian3.db.config.MyMapper"/>
+        </plugin>
+
+        <jdbcConnection connectionURL="jdbc:mysql://wzp:3306/jian3"
+                        driverClass="com.mysql.jdbc.Driver"
+                        userId="root"
+                        password="wzp1996108">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.wzp.jian3.db.model"
+                            targetProject="src/main/java">
+            <property name="immutable" value="true"></property>
+            <property name="constructorBased" value="false"></property>
+            <property name="enableSubPackages" value="false"></property>
+            <property name="trimStrings" value="false"></property>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mappers"
+                         targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="com.wzp.jian3.db.mapper"
+                             targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+
+
+        <table tableName="test" domainObjectName="Test">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+    </context>
+</generatorConfiguration>

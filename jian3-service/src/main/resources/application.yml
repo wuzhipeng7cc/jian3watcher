@@ -1,0 +1,26 @@
+
+spring:
+  ###################### mysql ###########################
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://wzp:3306/jian3?allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: wzp1996108
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.wzp.jian3.db.model
+  configuration:
+      mapUnderscoreToCamelCase: true
+mapper:
+  mappers:
+  - com.wzp.jian3.db.config.MyMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
