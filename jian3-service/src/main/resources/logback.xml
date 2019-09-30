@@ -2,7 +2,7 @@
 <configuration>
 
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/cloud-engine-config.log</file>
+        <file>logs/jian3-watcher-.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>logs/jian3-watcher-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
@@ -12,6 +12,12 @@
                 %date [%-5level]-- %c{40} %line --%mdc{client} %msg%n
             </Pattern>
         </layout>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>debug</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+
     </appender>
 
 
@@ -22,10 +28,16 @@
                 %date [%-5level]-- %c{40} %line --%mdc{client} %msg%n
             </Pattern>
         </layout>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>debug</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+
     </appender>
 
 
-    <root name="debug"  additivity="true">
+    <root name="info" additivity="true">
         <appender-ref ref="file" />
         <appender-ref ref="STDOUT" />
     </root>

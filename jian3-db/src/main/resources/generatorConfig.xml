@@ -34,7 +34,7 @@
                              type="XMLMAPPER"/>
 
 
-        <table tableName="test" domainObjectName="Test">
+        <table tableName="t_gold_price_unit" domainObjectName="TGoldPriceUnit">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
 
