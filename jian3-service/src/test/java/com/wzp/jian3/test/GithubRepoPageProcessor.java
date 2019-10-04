@@ -1,6 +1,5 @@
 package com.wzp.jian3.test;
 
-import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.junit.Test;
@@ -26,7 +25,7 @@ public class GithubRepoPageProcessor implements PageProcessor {
     public void process(Page page) {
         Selectable xpath = page.getHtml().xpath("//*[@id=\"divCommodityLst\"]/ul/li[4]/h6/span[1]");
         page.putField("goldPrice", xpath.toString());
-        if (page.getResultItems().get("name")==null) {
+        if (page.getResultItems().get("name") == null) {
             //skip this page
             page.setSkip(true);
         }
@@ -101,30 +100,29 @@ public class GithubRepoPageProcessor implements PageProcessor {
     }
 
     @Test
-    public void tiebaTest() throws Exception{
-        String fetchUrl="https://tieba.baidu.com/p/6283046934";
-            Map<String, String> header = new HashMap<String, String>();
-            header.put("User-Agent", "  Mozilla/5.0 (Windows NT 6.1; WOW64; rv:5.0) Gecko/20100101 Firefox/5.0");
-            header.put("Accept", "  text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-            header.put("Accept-Language", "zh-cn,zh;q=0.5");
-            header.put("Accept-Charset", "  GB2312,utf-8;q=0.7,*;q=0.7");
-            Html html = new Html(Jsoup.connect(fetchUrl).headers(header).timeout(10000).get().html(), fetchUrl);
-            //获取最后一页地址
+    public void tiebaTest() throws Exception {
+        String fetchUrl = "https://tieba.baidu.com/p/6283046934";
+        Map<String, String> header = new HashMap<String, String>();
+        header.put("User-Agent", "  Mozilla/5.0 (Windows NT 6.1; WOW64; rv:5.0) Gecko/20100101 Firefox/5.0");
+        header.put("Accept", "  text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+        header.put("Accept-Language", "zh-cn,zh;q=0.5");
+        header.put("Accept-Charset", "  GB2312,utf-8;q=0.7,*;q=0.7");
+        Html html = new Html(Jsoup.connect(fetchUrl).headers(header).timeout(10000).get().html(), fetchUrl);
+        //获取最后一页地址
         Selectable xpath3 = html.xpath("//li[@class=\"l_pager pager_theme_4 pb_list_pager\"]/a");
         List<Selectable> linkNodes = xpath3.links().nodes();
         //Selectable getLastPageUrl = xpath3;
         //.$("a", "href");
-        String s1 = linkNodes.get(linkNodes.size()-1).toString();
-        System.out.println("last:"+s1);
+        String s1 = linkNodes.get(linkNodes.size() - 1).toString();
+        System.out.println("last:" + s1);
         //Selectable xpath = html.xpath("//div[@id=\"j_p_postlist\"]//div[@class=\"d_post_content j_d_post_content \"]");
         Selectable xpath = html.xpath("//div[@id=\"j_p_postlist\"]//div[@class=\"l_post l_post_bright j_l_post clearfix  \"]");
         List<Selectable> nodes = xpath.nodes();
-        int idx=1;
-        for (Selectable node : nodes)
-        {
+        int idx = 1;
+        for (Selectable node : nodes) {
             //获取发帖时间
             Selectable time = node.xpath("//div[@class=\"post-tail-wrap\"]/span[4]/text()");
-            System.out.println("time"+time.toString());
+            System.out.println("time" + time.toString());
             String contentXpath = "//div[@class=\"post_bubble_middle_inner\"]";
             //获取姓名
             String s = node.xpath("//li[@class=\"d_name\"]/a/text()").toString();
@@ -132,11 +130,10 @@ public class GithubRepoPageProcessor implements PageProcessor {
 //            Selectable node = nodes.get(i);
             Selectable xpath1 = node.xpath(contentXpath);
             int size = xpath1.nodes().size();
-            if(size>0){
+            if (size > 0) {
                 Selectable xpath2 = xpath1.xpath("div/text()");
                 System.out.println(xpath2);
-            }
-            else {
+            } else {
 
                 Selectable xpath2 = node.xpath("//div[@class=\"d_post_content j_d_post_content \"]/text()");
                 System.out.println(xpath2.toString());
@@ -144,7 +141,7 @@ public class GithubRepoPageProcessor implements PageProcessor {
             //直接取评论内容
             //尝试另一种方式
 
-            System.out.println("========"+idx+"=======");
+            System.out.println("========" + idx + "=======");
             idx++;
 //            String s = node.xpath(contentXpath).toString();
 //            System.out.println(s);
@@ -152,27 +149,28 @@ public class GithubRepoPageProcessor implements PageProcessor {
 
     }
 
-    private  Double getPriceFromText(String text) {
-        Double price= 0d;
-        if(StringUtils.isBlank(text)){
+    private Double getPriceFromText(String text) {
+        Double price = 0d;
+        if (StringUtils.isBlank(text)) {
             return price;
         }
-        if (text.contains("出")){
-            String regx="(\\d{3})";
+        if (text.contains("出")) {
+            String regx = "(\\d{3})";
             Matcher matcher = Pattern.compile(regx).matcher(text);
-            while (matcher.find()){
+            while (matcher.find()) {
                 String group = matcher.group();
                 Double aDouble = Double.valueOf(group);
-                if(600>aDouble&&aDouble>450){
-                    price=Double.valueOf(group);
+                if (600 > aDouble && aDouble > 450) {
+                    price = Double.valueOf(group);
                 }
             }
         }
         return price;
     }
+
     @Test
-    public void testTB(){
-        String text=" 480出300r，要的留言";
+    public void testTB() {
+        String text = " 480出300r，要的留言";
         System.out.println(getPriceFromText(text));
     }
 
