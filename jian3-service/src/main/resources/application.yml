@@ -38,7 +38,7 @@ jian3:
       #匹配（'xxx',）中的xxx
       paymentRegx: (?<=(?:\(')).{1,500}(?=(?:',))
       inventoryXpath: '//li[3]/h5/text()'
-      fetchUrl: http://www.uu898.com/newTrade.aspx?gm=150&area=1319&srv=8963&c=-3
+      fetchUrl: http://www.uu898.com/newTrade.aspx?gm=150&area=1319&srv=8964&c=-3
   dd373:
     rule:
       #用于筛选支付链接
