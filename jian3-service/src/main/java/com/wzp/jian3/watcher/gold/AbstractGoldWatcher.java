@@ -11,6 +11,7 @@ import org.assertj.core.util.Lists;
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import us.codecraft.webmagic.selector.Html;
 import us.codecraft.webmagic.selector.Selectable;
 
@@ -66,7 +67,9 @@ public abstract class AbstractGoldWatcher implements GoldWatcher {
      */
     @Override
     public List<GoldPriceUnit> getCurrentList() throws Exception {
-
+        if(StringUtils.isEmpty(baseGoldRule.getFetchUrl())){
+            return new ArrayList<>();
+        }
         Date fetchTime = new Date();
         List<GoldPriceUnit> goldPriceUnits = Lists.newArrayList();
         Html html = getHtml();
@@ -99,6 +102,8 @@ public abstract class AbstractGoldWatcher implements GoldWatcher {
                 //获取卖家姓名
                 String sellerName = getSellerName(node);
                 goldPriceUnit.setSellerName(sellerName);
+                //设置区服
+                goldPriceUnit.setArea(baseGoldRule.getArea());
             } catch (Exception e) {
                 e.printStackTrace();
             }

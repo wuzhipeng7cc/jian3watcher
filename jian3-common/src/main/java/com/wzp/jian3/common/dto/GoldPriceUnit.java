@@ -2,7 +2,6 @@ package com.wzp.jian3.common.dto;
 
 import lombok.Data;
 
-import javax.persistence.Column;
 import java.util.Date;
 
 /**
@@ -46,6 +45,11 @@ public class GoldPriceUnit implements Comparable<GoldPriceUnit> {
      * 上架时间
      */
     private Date addTime;
+
+    /**
+     * 区服
+     */
+    private String area;
 
     @Override
     public int compareTo(GoldPriceUnit o) {

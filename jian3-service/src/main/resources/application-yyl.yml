@@ -38,8 +38,8 @@ jian3:
       #匹配（'xxx',）中的xxx
       paymentRegx: (?<=(?:\(')).{1,500}(?=(?:',))
       inventoryXpath: '//li[3]/h5/text()'
-      fetchUrl: http://www.uu898.com/newTrade.aspx?gm=150&area=1319&srv=8964&c=-3
-      area: 梦江南
+      fetchUrl: http://www.uu898.com/newTrade.aspx?gm=150&area=1319&srv=9588&c=-3
+      area: 幽月轮
   dd373:
     rule:
       #用于筛选支付链接
@@ -53,9 +53,9 @@ jian3:
       platform: dd373
       #匹配（'xxx',）中的xxx
       paymentRegx: (?<=(?:\(')).{1,500}(?=(?:',))
-      fetchUrl: https://www.dd373.com/s/8v8pc2-hswdmk-kqkv28-0-0-0-cwmaee-0-0-0-0-0-0-0-0.html
+      fetchUrl: https://www.dd373.com/s/8v8pc2-hswdmk-jvtg2x-0-0-0-cwmaee-0-0-0-0-0-0-0-0.html
       inventoryXpath: '//div[@class="num left"]/text()'
-      area: 梦江南
+      area: 幽月轮
   baidu:
     rule:
       #用于获取指定区域
@@ -69,10 +69,10 @@ jian3:
       platform: baidu
       #匹配（'xxx',）中的xxx
       paymentRegx: (?<=(?:\(')).{1,500}(?=(?:',))
-      fetchUrl: https://tieba.baidu.com/p/6283046934
+      fetchUrl: ''
       inventoryXpath: '//div[@class="num left"]/text()'
       sellerNameXpath: '//li[@class="d_name"]/a/text()'
-      area: 梦江南
+      area: 幽月轮
 server:
   port: 30001
 test:

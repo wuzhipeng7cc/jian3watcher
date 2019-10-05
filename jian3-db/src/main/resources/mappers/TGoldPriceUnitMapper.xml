@@ -14,6 +14,9 @@
       <arg column="inventory" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="created_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="last_modify_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="seller_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="add_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="area" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
 </mapper>

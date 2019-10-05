@@ -56,4 +56,9 @@ public class BaseGoldRule {
      */
     private String sellerNameXpath;
 
+    /**
+     * 区服
+     */
+    private String area;
+
 }

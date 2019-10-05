@@ -3,13 +3,13 @@ package com.wzp.jian3.db.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "t_gold_price_unit")
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 public class TGoldPriceUnit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,7 +54,12 @@ public class TGoldPriceUnit {
     @Column(name = "add_time")
     private Date addTime;
 
-    public TGoldPriceUnit(Long id, String platform, Date fetchTime, BigDecimal price, String paymentUrl, Long inventory, Date createdTime, Date lastModifyTime, String sellerName, Date addTime) {
+    /**
+     * 区服
+     */
+    private String area;
+
+    public TGoldPriceUnit(Long id, String platform, Date fetchTime, BigDecimal price, String paymentUrl, Long inventory, Date createdTime, Date lastModifyTime, String sellerName, Date addTime, String area) {
         this.id = id;
         this.platform = platform;
         this.fetchTime = fetchTime;
@@ -65,6 +70,7 @@ public class TGoldPriceUnit {
         this.lastModifyTime = lastModifyTime;
         this.sellerName = sellerName;
         this.addTime = addTime;
+        this.area = area;
     }
 
     /**
@@ -145,5 +151,14 @@ public class TGoldPriceUnit {
      */
     public Date getAddTime() {
         return addTime;
+    }
+
+    /**
+     * 获取区服
+     *
+     * @return area - 区服
+     */
+    public String getArea() {
+        return area;
     }
 }
