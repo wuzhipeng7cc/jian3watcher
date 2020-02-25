@@ -1,0 +1,79 @@
+
+spring:
+  ###################### mysql ###########################
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://wzp:3306/jian3?allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&useSSL=false
+    username: wangqun
+    password: 1qaz!QAZ
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.wzp.jian3.db.model
+  configuration:
+      mapUnderscoreToCamelCase: true
+mapper:
+  mappers:
+  - com.wzp.jian3.db.config.MyMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+jian3:
+  uu898:
+    rule:
+      #用于筛选支付链接
+      paymentXpath: '//li[4]/a[@class="button_5"]'
+      #用于筛选单价
+      goldUnitXpath: '//li[4]/h6/span[1]/text()'
+      #用于获取指定区域
+      specificAreaXpath: '//*[@id="divCommodityLst"]/ul'
+      baseUrl: http://www.uu898.com
+      #平台名称
+      platform: uu898
+      #匹配（'xxx',）中的xxx
+      paymentRegx: (?<=(?:\(')).{1,500}(?=(?:',))
+      inventoryXpath: '//li[3]/h5/text()'
+      fetchUrl: http://www.uu898.com/newTrade.aspx?gm=150&area=1319&srv=8966&c=-3
+      area: 斗转星移
+  dd373:
+    rule:
+      #用于筛选支付链接
+      paymentXpath: '//div[@class="dan left"]/div[2]/a[1]'
+      #用于筛选单价
+      goldUnitXpath: '//div[@class="dan left"]/div[1]/p[1]/text()'
+      #用于获取指定区域
+      specificAreaXpath: '//div[@id="biz_content_1"]/div[@class="box money_ner"]'
+      baseUrl: https://www.dd373.com
+      #平台名称
+      platform: dd373
+      #匹配（'xxx',）中的xxx
+      paymentRegx: (?<=(?:\(')).{1,500}(?=(?:',))
+      fetchUrl: https://www.dd373.com/s/8v8pc2-hswdmk-ackn6g-0-0-0-cwmaee-0-0-0-0-0-0-0-0.html
+      inventoryXpath: '//div[@class="num left"]/text()'
+      area: 斗转星移
+  baidu:
+    rule:
+      #用于获取指定区域
+      specificAreaXpath: '//div[@id="j_p_postlist"]//div[@class="l_post l_post_bright j_l_post clearfix  "]'
+      #用于筛选支付链接
+      paymentXpath: '/div'
+      #用于筛选单价
+      goldUnitXpath: '/div'
+      baseUrl: https://tieba.baidu.com
+      #平台名称
+      platform: baidu
+      #匹配（'xxx',）中的xxx
+      paymentRegx: (?<=(?:\(')).{1,500}(?=(?:',))
+      fetchUrl: ''
+      inventoryXpath: '//div[@class="num left"]/text()'
+      sellerNameXpath: '//li[@class="d_name"]/a/text()'
+      area: 斗转星移
+server:
+  port: 30001
+test:
+  text: 3
